@@ -124,7 +124,7 @@
 
 .text {
   font-family: 'Lora', serif;
-  color: $white;
+  color: white;
   -webkit-font-smoothing: antialiased;
 }
 

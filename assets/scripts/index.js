@@ -11,12 +11,6 @@ const api = require('./api.js')
 // require('./example')
 
 $(() => {
-  // const str = 'https://'
-  // const indexOrders = () => {
-  //   fetch(`${str}490f41edd92a10c5b3a407586a9afddc:37146826a987bc7d64eedc6ccab575ea@paucek-considine6869.myshopify.com/admin/orders.json`)
-  //     .then(console.log)
-  // }
-
   $('#recordings-page').hide()
   $('#calendar-page').hide()
   $('#contact-page').hide()

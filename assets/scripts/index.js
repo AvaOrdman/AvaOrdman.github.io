@@ -1,5 +1,6 @@
 'use strict'
 
+import 'bootstrap'
 // const indexDisplay = require('./templates/index-gigs.handlebars')
 // const events = require('./events.js')
 // const api = require('./api.js')

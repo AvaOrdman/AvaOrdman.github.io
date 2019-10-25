@@ -1,26 +1,3 @@
-@import '~bootstrap/scss/bootstrap';
-
-$glasses: #00b0ba;
-
-$purple: #6700BA;
-$lightPurple: #D9BFEE;
-$red: #BA0A00;
-$green: #53BA00;
-
-$triadPurple: #BA00B0;
-$triadYellow: #B0BA00;
-
-$darkGlasses: #007b86;
-
-$darkPurple: #4E0086;
-$darkRed: #860B00;
-$darkGreen: #388600;
-
-$brass: #d7bb67;
-$brassPurple: #BB67D7;
-
-$cream: #FDFCF8;
-
 .home-background {
   background-color: black;
   background-image: url('public/AvaLowRes2.jpg');
@@ -59,7 +36,7 @@ $cream: #FDFCF8;
 
 .bio-background {
   // background-color: #1D0032;
-  background-color: $darkGlasses;
+  background-color: #007b86;
   background-image: url("https://www.transparenttextures.com/patterns/fabric-of-squares.png");
 }
 
@@ -99,7 +76,7 @@ $cream: #FDFCF8;
 }
 
 #navbar-brand {
-  color: $glasses;
+  color: #00b0ba;
   font-size: 3.2em;
 }
 
@@ -124,12 +101,12 @@ $cream: #FDFCF8;
 .nav-linkX {
   font-family: alice, serif;
   font-size: 1.3em;
-  color: $brass;
+  color: #d7bb67;
   transition: .3s;
 }
 
 .selected {
-  color: $brassPurple;
+  color: #BB67D7;
 }
 
 .frame-bottom {
@@ -276,7 +253,7 @@ a:hover {
 #studio-blurb {
   -webkit-font-smoothing: antialiased;
   font-size: 20px;
-  color: $cream;
+  color: #FDFCF8;
   font-family: 'Lora', serif;
   text-align: center;
   padding: 129px 43px 0;
@@ -288,7 +265,7 @@ a {
   text-align: center;
   font-family: 'Lora', serif;
   font-size: 20px;
-  color: $brass;
+  color: #d7bb67;
   transition: .3s;
 }
 
@@ -728,7 +705,7 @@ a {
 .gig-details, .gig-title, .gig-description {
   // -webkit-font-smoothing: antialiased;
   font-family: 'Lora', serif;
-  // color: $glasses;
+  // color: #00b0ba;
 }
 
 .gig-title-container {
@@ -740,9 +717,9 @@ a {
 }
 .gig-title {
   // font-family: 'Raleway', sans-serif;
-  // color: $glasses;
-  // background-color: $purple;
-  color: $cream;
+  // color: #00b0ba;
+  // background-color: #6700BA;
+  color: #FDFCF8;
   // margin-bottom: 0.5em;
 }
 
@@ -767,11 +744,11 @@ a {
 }
 
 hr {
-  background-color: $purple;
+  background-color: #6700BA;
 }
 
 .material-icons {
-  color: $purple;
+  color: #6700BA;
 }
 
 .last-item {
@@ -825,13 +802,13 @@ hr {
 h2 {
   text-align: center;
   font-family: alice, serif;
-  color: $brass;
+  color: #d7bb67;
 }
 
 .third-of-page {
   width: 50%;
   margin: 3em 0 3em 2em;
-  // background-color: $purple;
+  // background-color: #6700BA;
   // display: inline-block;
 }
 
@@ -870,7 +847,7 @@ h2 {
 }
 
 .bio-paragraph {
-  color: $cream;
+  color: #FDFCF8;
   font-family: 'Lora', serif;
   -webkit-font-smoothing: antialiased;
   display: inline;
@@ -922,7 +899,7 @@ h2 {
   // font-family: alice, serif;
   font-family: 'Lora', serif;
   // font-size: 1.3em;
-  color: $brass;
+  color: #d7bb67;
 }
 
 .btn, input {
@@ -954,7 +931,7 @@ input:focus {
 
 circle {
   fill: none;
-  stroke: $brassPurple;
+  stroke: #BB67D7;
   stroke-width: 2;
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;

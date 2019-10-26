@@ -1,6 +1,6 @@
 .home-background {
   background-color: black;
-  background-image: url('public/AvaLowRes2.jpg');
+  background-image: url('../../img/AvaLowRes2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -8,7 +8,7 @@
 
 .recordings-background {
   background-color: black;
-  background-image: url('public/RecordLowRes.jpg');
+  background-image: url('../../img/RecordLowRes.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -17,8 +17,8 @@
 
 .students-background {
   background-color: black;
-  // background-image: url('public/Students4.jpg');
-  background-image: url('public/Board.jpg');
+  // background-image: url('../../img/Students4.jpg');
+  background-image: url('../../img/Board.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -27,7 +27,7 @@
 
 .calendar-background {
   background-color: black;
-  background-image: url('public/SymphonyLowRes.jpg');
+  background-image: url('../../img/SymphonyLowRes.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -70,7 +70,7 @@
 }
 
 .navbar-brand {
-  font-family: euphoria-script, cursive;
+  font-family: 'euphoria-script', cursive;
   font-size: 40px;
   transition: .3s;
 }
@@ -87,7 +87,7 @@
 }
 
 .navbar-toggler .navbar-toggler-icon {
-  background-image: url('https://mdbootstrap.com/img/svg/hamburger7.svg?color=d7bb67');
+  background-image: url('https://mdbootstrap.com/./img/svg/hamburger7.svg?color=d7bb67');
 }
 
 .navbar-toggler.navbar-toggler {
@@ -331,7 +331,7 @@ a {
   height: 430px;
   width: auto;
   background-color: white;
-  // background-image: url('public/Pinup2.png');
+  // background-image: url('../../img/Pinup2.png');
   z-index: 2;
 }
 
@@ -1128,7 +1128,7 @@ circle {
     display: block;
   }
   .home-background {
-    background-image: url('public/Mobile.jpg');
+    background-image: url('../../img/Mobile.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

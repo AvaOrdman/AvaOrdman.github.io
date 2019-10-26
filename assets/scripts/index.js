@@ -17,6 +17,11 @@ $(() => {
   $('#contact-page').hide()
   $('#bio-page').hide()
   $('#students-page').hide()
+  document.getElementById('recordings-page').style.display = 'none'
+  document.getElementById('calendar-page').style.display = 'none'
+  document.getElementById('bio-page').style.display = 'none'
+  document.getElementById('students-page').style.display = 'none'
+  document.getElementById('contact-page').style.display = 'none'
   // events.addHandlers()
   const blurbs = function () {
     setTimeout(function () {

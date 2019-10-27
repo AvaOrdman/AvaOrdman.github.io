@@ -216,8 +216,9 @@
     const signInSuccess = function (data) {
       store.user = data.user
       indexGigs()
-      .then((responseData) => $('.gigs-container').html(indexDisplay(responseData.gigs.reverse())))
       .then((responseData) => console.log('INDEX SUCCESS', responseData.gigs))
+      .then((responseData) => $('.gigs-container').html(indexDisplay(responseData.gigs.reverse())))
+      // .then((responseData) => console.log('INDEX SUCCESS', responseData.gigs))
       .then(() => {
         $('.initLog').hide()
         $('#signInSuccess').removeClass('disappear')

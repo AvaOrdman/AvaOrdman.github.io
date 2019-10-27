@@ -204,17 +204,22 @@
         .catch(console.log)
     }
 
+    let gigs
+
     const showIndexedGigs = () => {
       indexGigs()
-      .then((responseData) => $('.gigs-container').html(indexDisplay(responseData.reverse())))
-      // .then((responseData) => console.log('INDEX SUCCESS 2', responseData))
-      // .then((responseData) => console.log('INDEX SUCCESS', responseData.gigs))
-      .then(() => {
-        $('.initLog').hide()
-        $('#signInSuccess').removeClass('disappear')
-        $('.login-background').addClass('login-background2')
-        $('.login-background2').removeClass('login-background')
-      })
+        .then((responseData) => { gigs = responseData })
+        .then(() => console.log('GIGS', gigs)))
+        .then(() => $('.gigs-container').html(indexDisplay(gigs.gigs.reverse())))
+        // .then((responseData) => $('.gigs-container').html(indexDisplay(responseData.reverse())))
+        // .then((responseData) => console.log('INDEX SUCCESS 2', responseData))
+        // .then((responseData) => console.log('INDEX SUCCESS', responseData.gigs))
+        .then(() => {
+          $('.initLog').hide()
+          $('#signInSuccess').removeClass('disappear')
+          $('.login-background').addClass('login-background2')
+          $('.login-background2').removeClass('login-background')
+        })
     }
 
 

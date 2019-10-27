@@ -4,16 +4,17 @@
       <title>Ava Ordman</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
       <link href="assets/styles/main.css" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Lora|Merriweather+Sans|Raleway&display=swap" rel="stylesheet">
+      <!-- <link href="https://fonts.googleapis.com/css?family=Lora|Merriweather+Sans|Raleway&display=swap" rel="stylesheet"> -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
       <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="assets/scripts/index.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-      <script src="//use.edgefonts.net/lora;alice;euphoria-script.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+      <script src="http://use.edgefonts.net/lora;alice;euphoria-script.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
     <body id="fouc" class="home-background">
     <div id="overlay">
@@ -25,22 +26,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a id="home" class="nav-linkX" href="#">Home <span class="sr-only">(current)</span></a>
+              <a id="home" class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a id="recordings" class="nav-linkX" href="#">Recordings</a>
+              <a id="recordings" class="nav-link" href="#">Recordings</a>
             </li>
             <li class="nav-item">
-              <a id="calendar" class="nav-linkX" href="#">Calendar</a>
+              <a id="calendar" class="nav-link" href="#">Calendar</a>
             </li>
             <li class="nav-item">
-              <a id="bio" class="nav-linkX" href="#">Bio</a>
+              <a id="bio" class="nav-link" href="#">Bio</a>
             </li>
             <li class="nav-item">
-              <a id="students" class="nav-linkX" href="#">Students</a>
+              <a id="students" class="nav-link" href="#">Students</a>
             </li>
             <li class="nav-item last-item">
-              <a id="contact" class="nav-linkX" href="#">Contact</a>
+              <a id="contact" class="nav-link" href="#">Contact</a>
             </li>
           </ul>
         </div>
@@ -221,8 +222,8 @@
         <div id="studio-blurb-container">
           <p id="studio-blurb">The Michigan State University Trombone Studio is made up of approximately 20 undergraduate, MM and DMA trombone students studying performance and music education under Professor Ava Ordman. In addition to nearly 100% placement for Music Education graduates, MSU grads are performing in orchestras and military bands and teaching at colleges and universities throughout the US and abroad. If interested in pursuing trombone studies at MSU, contact admissions at the College of Music or Professor Ordman directly.</p>
           <div id="link-container">
-            <a href="https://www.music.msu.edu/admissions" target="_blank">Admissions</a>
-            <a href="mailto:ordman@msu.edu" target="_blank">Email Professor Ordman</a>
+            <a href="https://www.music.msu.edu/admissions" target="_blank" class="link">Admissions</a>
+            <a href="mailto:ordman@msu.edu" target="_blank" class="link">Email Professor Ordman</a>
           </div>
         </div>
         <img src="img/GoldFrame.png" class="frame-top" alt="Picture frame">
@@ -418,39 +419,58 @@
     //   $('#blurb4').removeClass('disappear')
     // }, 2500)
 
-    // const sortByDate = function (gigs) {
-    //   return gigs.sort(function compareNumbers (a, b) {
-    //     return (new Date(a.date).getTime()) - (new Date(b.date).getTime())
-    //   })
-    // }
+    const sortByDate = function (gigs) {
+      return gigs.sort(function compareNumbers (a, b) {
+        return (new Date(a.date).getTime()) - (new Date(b.date).getTime())
+      })
+    }
 
-    // let apiUrl
-    // const apiUrls = {
-    //   production: 'https://mighty-tundra-49432.herokuapp.com',
-    //   development: 'http://localhost:4741'
-    // }
-    //
-    // if (window.location.hostname === 'localhost') {
-    //   apiUrl = apiUrls.development
-    // } else {
-    //   apiUrl = apiUrls.production
-    // }
-    //
-    // const indexGigs = () => {
-    //   return $.ajax({
-    //     url: apiUrl + '/gigs',
-    //     method: 'GET'
-    //   })
-    // }
-    //
-    // indexGigs()
-    //   .then((responseData) => $('.gigs-container').html(indexDisplay({ gigs: sortByDate(responseData.gigs) })))
-    //   // .then((responseData) => $('#signInSuccess').html(editGigs({ gigs: responseData.gigs.reverse() })))
-    //   .then(() => {
-    //     $('.calendar-loader').hide()
-    //     $('.calendar-load').hide()
-    //   })
-    //   .catch(console.log)
+    let apiUrl
+    const apiUrls = {
+      production: 'https://mighty-tundra-49432.herokuapp.com',
+      development: 'http://localhost:4741'
+    }
+
+    if (window.location.hostname === 'localhost') {
+      apiUrl = apiUrls.development
+    } else {
+      apiUrl = apiUrls.production
+    }
+
+    // apiUrl = apiUrls.development
+
+    const indexGigs = () => {
+      return $.ajax({
+        url: apiUrl + '/gigs',
+        method: 'GET'
+      })
+    }
+
+    indexGigs()
+      .then((responseData) => $('.gigs-container').html(sortByDate(responseData.gigs).map(gig => {
+        return (
+          `<div class="gig-container animated slideInUp">
+            <div class="gig">
+              <div class="gig-title-container">
+                <h3 class="gig-title">${gig.title}</h3>
+              </div>
+              <div class="gig-content-container">
+                <i class="material-icons">date_range</i><span class="gig-details">${gig.date}</span><br>
+                <i class="material-icons">access_time</i><span class="gig-details">${gig.time}</span><br>
+                <i class="material-icons">place</i><span class="gig-details">${gig.place}</span><br>
+                <hr>
+                <p class="gig-description">${gig.text}</p>
+              </div>
+            </div>
+          </div>`
+        )
+      })))
+      // .then((responseData) => $('#signInSuccess').html(editGigs({ gigs: responseData.gigs.reverse() })))
+      .then(() => {
+        $('.calendar-loader').hide()
+        $('.calendar-load').hide()
+      })
+      .catch(console.log)
 
     const showAndHideContent = function (show) {
       const pagesArr = ['home', 'recordings', 'calendar', 'bio', 'students', 'contact']
@@ -527,17 +547,6 @@
         }
       }, 1000)
     }
-
-      // const onSignIn = function (event) {
-      //   $('.load-log').removeClass('disappear')
-      //   event.preventDefault()
-      //   const data = getFormFields(this)
-      //   console.log('sign in data', data)
-      //   api.signIn(data)
-      //     .then(signInSuccess)
-      //     .catch(console.log)
-      // }
-
       // const indexGigs = function () {
       //   api.indexGigs()
       //     .then((responseData) => $('#handlebar-gigs').html(editGigs({ gigs: responseData.gigs.reverse() })))
@@ -548,53 +557,6 @@
       //   $('.login-background2').removeClass('login-background')
       // }
 
-      // const signInSuccess = function (data) {
-      //   store.user = data.user
-      //   indexGigs()
-      // }
-
-      // class Gig {
-      //   constructor (data) {
-      //     this.gig = {
-      //       title: data.title,
-      //       date: data.date.toString(),
-      //       time: data.time,
-      //       place: data.place,
-      //       text: data.text
-      //     }
-      //   }
-      // }
-
-      // const onCreateGig = function (event) {
-      //   event.preventDefault()
-      //   const data = getFormFields(this)
-      //   console.log('date parse: ', Date.parse(data.gig.date))
-      //   const gig = new Gig(data.gig)
-      //   api.createGig(gig)
-      //     .then(indexGigs)
-      //     .then(() => alert('success'))
-      // }
-
-      // const onEditGig = function (event) {
-      //   event.preventDefault()
-      //   const data = getFormFields(this)
-      //   console.log('form fields', data)
-      //   const gig = new Gig(data.gig)
-      //   const gigId = $(event.target).data('id')
-      //   api.updateGig(gig, gigId)
-      //     .then(indexGigs)
-      //     .then(() => alert('success'))
-      // }
-      //
-      // const onDeleteGig = function (event) {
-      //   event.preventDefault()
-      //   const gigId = $(event.target).data('id')
-      //   console.log('Delete gigId', gigId)
-      //   api.deleteGig(gigId)
-      //     .then(indexGigs)
-      //     .then(() => alert('success'))
-      // }
-
     $('.navbar-toggler').on('click', adjustNavPadding)
     $('#recordings').on('click', onClickRecordings)
     $('#home').on('click', onClickHome)
@@ -602,9 +564,5 @@
     $('#bio').on('click', onClickBio)
     $('#students').on('click', onClickStudents)
     $('#contact').on('click', onClickContact)
-    // $('#sign-in').on('submit', onSignIn)
-    // $('#create-gig').on('submit', onCreateGig)
-    // $('#handlebar-gigs').on('submit', '.update-gig', onEditGig)
-    // $('#handlebar-gigs').on('click', '.delete-btn', onDeleteGig)
   </script>
 </html>

@@ -93,12 +93,14 @@ $cream: #FDFCF8;
 }
 
 .navbar-brand {
+  -webkit-font-smoothing: antialiased;
   font-family: euphoria-script, cursive;
   font-size: 40px;
   transition: .3s;
 }
 
 #navbar-brand {
+  -webkit-font-smoothing: antialiased;
   color: $glasses;
   font-size: 3.2em;
 }
@@ -121,7 +123,7 @@ $cream: #FDFCF8;
   outline: none;
 }
 
-.nav-linkX {
+.nav-link {
   font-family: alice, serif;
   font-size: 1.3em;
   color: $brass;

@@ -214,7 +214,8 @@
       indexGigs()
         .then((responseData) => { gigData = responseData })
         .then(() => console.log('GIGS', gigData.gigs))
-        .then(() => $('#handlebar-gigs').html(indexDisplay(gigData.gigs.reverse())))
+        .then(() => $('#handlebar-gigs').html(`<h2 class="initLog-headers">Edit/Delete Gigs</h2>
+        ${indexDisplay(gigData.gigs.reverse())}`))
         .then(() => console.log($('#handlebar-gigs').html()))
         // .then((responseData) => console.log('INDEX SUCCESS 2', responseData))
         // .then((responseData) => console.log('INDEX SUCCESS', responseData.gigs))

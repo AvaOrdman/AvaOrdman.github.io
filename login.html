@@ -110,8 +110,8 @@
       return target
     }
 
-    const indexDisplay = (gigs) => {
-      return gigs.map(gig => {
+    const indexDisplay = (indexedGigs) => {
+      return indexedGigs.map(gig => {
         return (
           `<div class="gig-container animated slideInUp">
             <div class="gig">
@@ -204,14 +204,14 @@
         .catch(console.log)
     }
 
-    let gigs
+    let gigData
 
     const showIndexedGigs = () => {
       indexGigs()
         .then((responseData) => { gigs = responseData })
-        .then(() => console.log('GIGS', gigs))
-        .then(() => $('.gigs-container').html(indexDisplay(gigs.gigs.reverse())))
-        // .then((responseData) => $('.gigs-container').html(indexDisplay(responseData.reverse())))
+        .then(() => console.log('GIGS', gigData))
+        .then(() => $('.gigs-container').html(indexDisplay(gigData.gigs.reverse())))
+        .then(() => console.log($('.gigs-container').html()))
         // .then((responseData) => console.log('INDEX SUCCESS 2', responseData))
         // .then((responseData) => console.log('INDEX SUCCESS', responseData.gigs))
         .then(() => {

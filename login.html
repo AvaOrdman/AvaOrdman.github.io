@@ -196,8 +196,15 @@
     const signInSuccess = function (data) {
       store.user = data.user
       indexGigs()
-      .then((responseData) => $('.gigs-container').html('<h1 id="white">Index Success</h1>'))
       .then(() => console.log('INDEX SUCCESS'))
+      .then(() => {
+        $('.initLog').hide()
+        $('#signInSuccess').removeClass('disappear')
+        $('.login-background').addClass('login-background2')
+        $('.login-background2').removeClass('login-background')
+      })
+      // .then((responseData) => $('.gigs-container').html('<h1 id="white">Index Success</h1>'))
+      // .then(() => console.log('INDEX SUCCESS'))
     }
 
     class Gig {

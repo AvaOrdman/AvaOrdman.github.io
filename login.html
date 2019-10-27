@@ -208,7 +208,7 @@
 
     const showIndexedGigs = () => {
       indexGigs()
-        .then((responseData) => { gigs = responseData })
+        .then((responseData) => { gigData = responseData })
         .then(() => console.log('GIGS', gigData))
         .then(() => $('.gigs-container').html(indexDisplay(gigData.gigs.reverse())))
         .then(() => console.log($('.gigs-container').html()))

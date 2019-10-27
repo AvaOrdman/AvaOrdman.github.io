@@ -97,7 +97,7 @@
   outline: none;
 }
 
-.nav-link {
+.nav-linkX {
   font-family: alice, serif;
   font-size: 1.3em;
   color: #d7bb67;
@@ -127,7 +127,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.link:hover, .nav-link:hover {
+.link:hover, .nav-linkX:hover {
   color: #BB67D7;
   text-decoration: none;
 }

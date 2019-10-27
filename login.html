@@ -246,18 +246,9 @@
         .then(() => alert('success'))
     }
 
-    const addHandlers = () => {
-      $('.navbar-toggler').on('click', adjustNavPadding)
-      $('#recordings').on('click', onClickRecordings)
-      $('#home').on('click', onClickHome)
-      $('#calendar').on('click', onClickCalendar)
-      $('#bio').on('click', onClickBio)
-      $('#students').on('click', onClickStudents)
-      $('#contact').on('click', onClickContact)
-      $('#sign-in').on('submit', onSignIn)
-      $('#create-gig').on('submit', onCreateGig)
-      $('#handlebar-gigs').on('submit', '.update-gig', onEditGig)
-      $('#handlebar-gigs').on('click', '.delete-btn', onDeleteGig)
-    }
+    $('#sign-in').on('submit', onSignIn)
+    $('#create-gig').on('submit', onCreateGig)
+    $('#handlebar-gigs').on('submit', '.update-gig', onEditGig)
+    $('#handlebar-gigs').on('click', '.delete-btn', onDeleteGig)
   </script>
 </html>

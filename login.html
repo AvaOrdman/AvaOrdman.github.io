@@ -204,6 +204,20 @@
         .catch(console.log)
     }
 
+    const showIndexedGigs = () => {
+      indexGigs()
+      .then((responseData) => console.log('INDEX SUCCESS', responseData))
+      .then((responseData) => $('.gigs-container').html(indexDisplay(responseData.gigs.reverse())))
+      // .then((responseData) => console.log('INDEX SUCCESS', responseData.gigs))
+      .then(() => {
+        $('.initLog').hide()
+        $('#signInSuccess').removeClass('disappear')
+        $('.login-background').addClass('login-background2')
+        $('.login-background2').removeClass('login-background')
+      })
+    }
+
+
     const sortByDate = function (gigs) {
       return gigs.sort(function compareNumbers (a, b) {
         console.log('sample time', new Date(a.date).getTime())
@@ -215,18 +229,7 @@
 
     const signInSuccess = function (data) {
       store.user = data.user
-      indexGigs()
-      .then((responseData) => console.log('INDEX SUCCESS', responseData.gigs))
-      .then((responseData) => $('.gigs-container').html(indexDisplay(responseData.gigs.reverse())))
-      // .then((responseData) => console.log('INDEX SUCCESS', responseData.gigs))
-      .then(() => {
-        $('.initLog').hide()
-        $('#signInSuccess').removeClass('disappear')
-        $('.login-background').addClass('login-background2')
-        $('.login-background2').removeClass('login-background')
-      })
-      // .then((responseData) => $('.gigs-container').html('<h1 id="white">Index Success</h1>'))
-      // .then(() => console.log('INDEX SUCCESS'))
+      showIndexedGigs()
     }
 
     class Gig {

@@ -206,8 +206,8 @@
 
     const showIndexedGigs = () => {
       indexGigs()
-      .then((responseData) => console.log('INDEX SUCCESS 2', responseData))
       .then((responseData) => $('.gigs-container').html(indexDisplay(responseData.reverse())))
+      // .then((responseData) => console.log('INDEX SUCCESS 2', responseData))
       // .then((responseData) => console.log('INDEX SUCCESS', responseData.gigs))
       .then(() => {
         $('.initLog').hide()

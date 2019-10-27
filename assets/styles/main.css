@@ -85,8 +85,13 @@
   padding: 0 1rem;
 }
 
-.navbar-toggler .navbar-toggler-icon {
-  background-image: url('https://mdbootstrap.com/./img/svg/hamburger7.svg?color=d7bb67');
+.navbar-toggler-icon {
+  background-image: url('../../img/hamburger7.png');
+}
+
+.navbar-toggler {
+  background-color: #d7bb67;
+  color: #d7bb67;
 }
 
 .navbar-toggler.navbar-toggler {
@@ -1040,7 +1045,8 @@ circle {
 
 @media only screen and (max-width: 1200px) {
   .concerto {
-    display: block;
+    display: block !important;
+    padding: 0;
     margin: 0 auto;
   }
 }

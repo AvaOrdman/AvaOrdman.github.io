@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ava Ordman</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Do not add `link` tags-->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <!-- Do not add `script` tags-->
+    <link href="assets/styles/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="assets/scripts/index.js" type="text/javascript" charset="utf-8" defer></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://use.edgefonts.net/lora;alice;euphoria-script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body class="login-background">
+    <div class="initLog">
+      <form id="sign-in">
+        <h2 class="initLog-headers">Welcome, Ava!</h2>
+          <input class="third log-field" type="text" name="credentials[email]" maxlength="40" placeholder="Username">
+          <input class="third log-field" type="password" name="credentials[password]" maxlength="40" placeholder="Password">
+          <br><input type="submit" value="Sign in" class="btn btn-info btn-block third">
+      </form>
+      <div class="justify-center">
+        <svg class="load-log disappear" viewBox="25 25 50 50">
+          <circle cx="50" cy="50" r="20"></circle>
+        </svg>
+      </div>
+    </div>
+    <section id="signInSuccess" class="disappear">
+      <div id='new-gig' class='gig-container top-edit-gig'>
+        <div>
+          <h2 class="initLog-headers">New Gig</h2>
+          <form id="create-gig">
+            <input class='input-gig-detail' type="text" name="gig[title]" placeholder="Title">
+            <input class='input-gig-detail' type="text" name="gig[date]" placeholder="Date">
+            <input class='input-gig-detail' type="text" name="gig[time]" placeholder="Time">
+            <input class='input-gig-detail' type="text" name="gig[place]" placeholder="Location">
+            <input class='input-gig-detail' type="text" name="gig[text]" placeholder="Description">
+            <input type="submit" value="Create" class="btn btn-info btn-block">
+          </form>
+        </div>
+      </div>
+      <div id="handlebar-gigs">
+      </div>
+    </section>
+  </body>
+  <script>
+    const addNestedValue = function (pojo, name, value) {
+      const recurse = function recurse (pojo, keys, value) {
+        const key = keys.shift()
+        const next = keys[0]
+        if (next === '') { // key is an array
+          pojo[key] = pojo[key] || []
+          pojo[key].push(value)
+        } else if (next) { // key is a parent key
+          pojo[key] = pojo[key] || {}
+          recurse(pojo[key], keys, value)
+        } else { // key is the key for value
+          pojo[key] = value
+        }
+
+        return pojo
+      }
+
+      const keys = name.split('[').map((k) => k.replace(/]$/, ''))
+      return recurse(pojo, keys, value)
+    }
+
+    const getFormFields = (form) => {
+      const target = {}
+
+      const elements = form.elements || []
+      for (let i = 0; i < elements.length; i++) {
+        const e = elements[i]
+        if (!e.hasAttribute('name')) {
+          continue
+        }
+
+        let type = 'TEXT'
+        switch (e.nodeName.toUpperCase()) {
+          case 'SELECT':
+            type = e.hasAttribute('multiple') ? 'MULTIPLE' : type
+            break
+          case 'INPUT':
+            type = e.getAttribute('type').toUpperCase()
+            break
+        }
+
+        const name = e.getAttribute('name')
+
+        if (type === 'MULTIPLE') {
+          for (let i = 0; i < e.length; i++) {
+            if (e[i].selected) {
+              addNestedValue(target, name, e[i].value)
+            }
+          }
+        } else if ((type !== 'RADIO' && type !== 'CHECKBOX') || e.checked) {
+          addNestedValue(target, name, e.value)
+        }
+      }
+
+      return target
+    }
+
+
+    let store = {}
+
+    let apiUrl
+    const apiUrls = {
+      production: 'https://mighty-tundra-49432.herokuapp.com',
+      development: 'http://localhost:4741'
+    }
+
+    if (window.location.hostname === 'localhost') {
+      apiUrl = apiUrls.development
+    } else {
+      apiUrl = apiUrls.production
+    }
+
+
+    const indexGigs = () => {
+      return $.ajax({
+        url: config.apiUrl + '/gigs',
+        method: 'GET'
+      })
+    }
+
+    const createGig = (data) => {
+      return $.ajax({
+        url: config.apiUrl + '/gigs',
+        method: 'POST',
+        headers: {
+          Authorization: 'Token token=' + store.user.token
+        },
+        data: data
+      })
+    }
+
+    const updateGig = (data, gigId) => {
+      return $.ajax({
+        url: config.apiUrl + '/gigs/' + gigId,
+        method: 'PATCH',
+        headers: {
+          Authorization: 'Token token=' + store.user.token
+        },
+        data: data
+      })
+    }
+
+    const deleteGig = (gigId) => {
+      return $.ajax({
+        url: config.apiUrl + '/gigs/' + gigId,
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Token token=' + store.user.token
+        }
+      })
+    }
+
+    const signIn = function (data) {
+      return $.ajax({
+        url: config.apiUrl + '/sign-in',
+        method: 'POST',
+        data
+      })
+    }
+
+    const onSignIn = function (event) {
+      $('.load-log').removeClass('disappear')
+      event.preventDefault()
+      const data = getFormFields(this)
+      console.log('sign in data', data)
+      api.signIn(data)
+        .then(signInSuccess)
+        .catch(console.log)
+    }
+
+    const sortByDate = function (gigs) {
+      return gigs.sort(function compareNumbers (a, b) {
+        console.log('sample time', new Date(a.date).getTime())
+        return parseInt(new Date(a.date).getTime()) - parseInt(new Date(b.date).getTime())
+      })
+    }
+
+    let sortedGigs
+
+    const indexGigs = function () {
+      api.indexGigs()
+        .then((responseData) => { sortedGigs = sortByDate(responseData.gigs) })
+        .then(() => console.log('sorted gigs', sortedGigs))
+        .then((responseData) => $('#handlebar-gigs').html(editGigs({ gigs: sortedGigs })))
+        .catch(console.log)
+      $('.initLog').hide()
+      $('#signInSuccess').removeClass('disappear')
+      $('.login-background').addClass('login-background2')
+      $('.login-background2').removeClass('login-background')
+    }
+
+    const signInSuccess = function (data) {
+      store.user = data.user
+      indexGigs()
+    }
+
+    class Gig {
+      constructor (data) {
+        this.gig = {
+          title: data.title,
+          date: data.date.toString(),
+          time: data.time,
+          place: data.place,
+          text: data.text
+        }
+      }
+    }
+
+    const onCreateGig = function (event) {
+      event.preventDefault()
+      const data = getFormFields(this)
+      console.log('date parse: ', Date.parse(data.gig.date))
+      // const seconds = Date.parse(data.gig.date).toLocaleString()
+      // const d = new Date(Date.parse(data.gig.date) + 18000000)
+      // console.log('d should work', d)
+      // console.log('date', data.gig.date.toString())
+      const gig = new Gig(data.gig)
+      api.createGig(gig)
+        .then(indexGigs)
+        .then(() => alert('success'))
+    }
+
+    const onEditGig = function (event) {
+      event.preventDefault()
+      const data = getFormFields(this)
+      console.log('form fields', data)
+      const gig = new Gig(data.gig)
+      const gigId = $(event.target).data('id')
+      api.updateGig(gig, gigId)
+        .then(indexGigs)
+        .then(() => alert('success'))
+    }
+
+    const onDeleteGig = function (event) {
+      event.preventDefault()
+      const gigId = $(event.target).data('id')
+      console.log('Delete gigId', gigId)
+      api.deleteGig(gigId)
+        .then(indexGigs)
+        .then(() => alert('success'))
+    }
+
+    const addHandlers = () => {
+      $('.navbar-toggler').on('click', adjustNavPadding)
+      $('#recordings').on('click', onClickRecordings)
+      $('#home').on('click', onClickHome)
+      $('#calendar').on('click', onClickCalendar)
+      $('#bio').on('click', onClickBio)
+      $('#students').on('click', onClickStudents)
+      $('#contact').on('click', onClickContact)
+      $('#sign-in').on('submit', onSignIn)
+      $('#create-gig').on('submit', onCreateGig)
+      $('#handlebar-gigs').on('submit', '.update-gig', onEditGig)
+      $('#handlebar-gigs').on('click', '.delete-btn', onDeleteGig)
+    }
+  </script>
+</html>

@@ -128,14 +128,14 @@
 
     const indexGigs = () => {
       return $.ajax({
-        url: config.apiUrl + '/gigs',
+        url: apiUrl + '/gigs',
         method: 'GET'
       })
     }
 
     const createGig = (data) => {
       return $.ajax({
-        url: config.apiUrl + '/gigs',
+        url: apiUrl + '/gigs',
         method: 'POST',
         headers: {
           Authorization: 'Token token=' + store.user.token
@@ -146,7 +146,7 @@
 
     const updateGig = (data, gigId) => {
       return $.ajax({
-        url: config.apiUrl + '/gigs/' + gigId,
+        url: apiUrl + '/gigs/' + gigId,
         method: 'PATCH',
         headers: {
           Authorization: 'Token token=' + store.user.token
@@ -157,7 +157,7 @@
 
     const deleteGig = (gigId) => {
       return $.ajax({
-        url: config.apiUrl + '/gigs/' + gigId,
+        url: apiUrl + '/gigs/' + gigId,
         method: 'DELETE',
         headers: {
           Authorization: 'Token token=' + store.user.token
@@ -167,7 +167,7 @@
 
     const signIn = function (data) {
       return $.ajax({
-        url: config.apiUrl + '/sign-in',
+        url: apiUrl + '/sign-in',
         method: 'POST',
         data
       })
@@ -179,7 +179,7 @@
       const data = getFormFields(this)
       console.log('sign in triggered')
       console.log('sign in data', data)
-      api.signIn(data)
+      signIn(data)
         .then(signInSuccess)
         .catch(console.log)
     }
@@ -228,7 +228,7 @@
       // console.log('d should work', d)
       // console.log('date', data.gig.date.toString())
       const gig = new Gig(data.gig)
-      api.createGig(gig)
+      createGig(gig)
         .then(indexGigs)
         .then(() => alert('success'))
     }
@@ -239,7 +239,7 @@
       console.log('form fields', data)
       const gig = new Gig(data.gig)
       const gigId = $(event.target).data('id')
-      api.updateGig(gig, gigId)
+      updateGig(gig, gigId)
         .then(indexGigs)
         .then(() => alert('success'))
     }
@@ -248,7 +248,7 @@
       event.preventDefault()
       const gigId = $(event.target).data('id')
       console.log('Delete gigId', gigId)
-      api.deleteGig(gigId)
+      deleteGig(gigId)
         .then(indexGigs)
         .then(() => alert('success'))
     }

@@ -84,13 +84,15 @@
   padding: 0 1rem;
 }
 
-.navbar-toggler-icon {
+/* .navbar-toggler-icon {
   background-image: url('../../img/hamburger7.png');
-}
+} */
 
 .navbar-toggler {
-  background-color: #d7bb67;
-  color: #d7bb67;
+  /* background-color: #d7bb67; */
+  background-image: url('../../img/hamburger7.png');
+  width: 32px;
+  height: 32px;
 }
 
 .navbar-toggler.navbar-toggler {

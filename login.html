@@ -51,6 +51,26 @@
         <h2 class="initLog-headers">Edit/Delete Gigs</h2>
       </div>
     </section>
+    <!-- Success Modal -->
+    <div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="SuccesModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="mobile-modal-content modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title" id="sModalLabel">Success!</h5> -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Success!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <script>
     console.log('SCRIPT RUNNING')
@@ -265,7 +285,8 @@
       const gig = new Gig(data.gig)
       createGig(gig)
         .then(showIndexedGigs)
-        .then(() => alert('success'))
+        // .then(() => alert('success'))
+        .then(() => $('.success-loader').show())
     }
 
     const onEditGig = function (event) {
@@ -276,7 +297,8 @@
       const gigId = $(event.target).data('id')
       updateGig(gig, gigId)
         .then(showIndexedGigs)
-        .then(() => alert('success'))
+        // .then(() => alert('success'))
+        .then(() => $('.success-loader').show())
     }
 
     const onDeleteGig = function (event) {
@@ -285,7 +307,8 @@
       console.log('Delete gigId', gigId)
       deleteGig(gigId)
         .then(showIndexedGigs)
-        .then(() => alert('success'))
+        // .then(() => alert('success'))
+        .then(() => $('.success-loader').show())
     }
 
     $('#sign-in').on('submit', onSignIn)

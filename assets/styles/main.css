@@ -330,6 +330,11 @@
   justify-content: space-between;
 }
 
+#success {
+  font-family: alice, serif;
+  text-align: center;
+}
+
 .pinup {
   margin: 5px;
   padding: 10px;

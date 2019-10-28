@@ -73,7 +73,6 @@
     </div>
   </body>
   <script>
-    console.log('SCRIPT RUNNING')
     const addNestedValue = function (pojo, name, value) {
       const recurse = function recurse (pojo, keys, value) {
         const key = keys.shift()
@@ -202,8 +201,6 @@
       event.preventDefault()
       $('.load-log').removeClass('disappear')
       const data = getFormFields(this)
-      console.log('sign in triggered')
-      console.log('sign in data', data)
       signIn(data)
         .then(signInSuccess)
         .catch(console.log)
@@ -212,12 +209,8 @@
     const showIndexedGigs = () => {
       indexGigs()
         .then((responseData) => { gigData = responseData })
-        .then(() => console.log('GIGS', gigData.gigs))
         .then(() => $('#handlebar-gigs').html(`<h2 class="initLog-headers">Edit/Delete Gigs</h2>
         ${indexDisplay(gigData.gigs.reverse())}`))
-        .then(() => console.log($('#handlebar-gigs').html()))
-        // .then((responseData) => console.log('INDEX SUCCESS 2', responseData))
-        // .then((responseData) => console.log('INDEX SUCCESS', responseData.gigs))
         .then(() => {
           $('.initLog').hide()
           $('#signInSuccess').removeClass('disappear')
@@ -227,7 +220,6 @@
     }
     const sortByDate = function (gigs) {
       return gigs.sort(function compareNumbers (a, b) {
-        console.log('sample time', new Date(a.date).getTime())
         return parseInt(new Date(a.date).getTime()) - parseInt(new Date(b.date).getTime())
       })
     }
@@ -250,11 +242,6 @@
     const onCreateGig = function (event) {
       event.preventDefault()
       const data = getFormFields(this)
-      console.log('date parse: ', Date.parse(data.gig.date))
-      // const seconds = Date.parse(data.gig.date).toLocaleString()
-      // const d = new Date(Date.parse(data.gig.date) + 18000000)
-      // console.log('d should work', d)
-      // console.log('date', data.gig.date.toString())
       const gig = new Gig(data.gig)
       createGig(gig)
         .then(showIndexedGigs)
@@ -263,7 +250,6 @@
     const onEditGig = function (event) {
       event.preventDefault()
       const data = getFormFields(this)
-      console.log('form fields', data)
       const gig = new Gig(data.gig)
       const gigId = $(event.target).data('id')
       updateGig(gig, gigId)
@@ -273,7 +259,6 @@
     const onDeleteGig = function (event) {
       event.preventDefault()
       const gigId = $(event.target).data('id')
-      console.log('Delete gigId', gigId)
       deleteGig(gigId)
         .then(showIndexedGigs)
         .then(() => $('#success-modal').modal('show'))

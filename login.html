@@ -87,24 +87,19 @@
         } else { // key is the key for value
           pojo[key] = value
         }
-
         return pojo
       }
-
       const keys = name.split('[').map((k) => k.replace(/]$/, ''))
       return recurse(pojo, keys, value)
     }
-
     const getFormFields = (form) => {
       const target = {}
-
       const elements = form.elements || []
       for (let i = 0; i < elements.length; i++) {
         const e = elements[i]
         if (!e.hasAttribute('name')) {
           continue
         }
-
         let type = 'TEXT'
         switch (e.nodeName.toUpperCase()) {
           case 'SELECT':
@@ -114,9 +109,7 @@
             type = e.getAttribute('type').toUpperCase()
             break
         }
-
         const name = e.getAttribute('name')
-
         if (type === 'MULTIPLE') {
           for (let i = 0; i < e.length; i++) {
             if (e[i].selected) {
@@ -127,10 +120,8 @@
           addNestedValue(target, name, e.value)
         }
       }
-
       return target
     }
-
     const indexDisplay = (indexedGigs) => {
       return indexedGigs.map(gig => {
         return (
@@ -154,29 +145,23 @@
         )
       })
     }
-
     let store = {}
-
     let apiUrl
     const apiUrls = {
       production: 'https://mighty-tundra-49432.herokuapp.com',
       development: 'http://localhost:4741'
     }
-
     if (window.location.hostname === 'localhost') {
       apiUrl = apiUrls.development
     } else {
       apiUrl = apiUrls.production
     }
-
-
     const indexGigs = () => {
       return $.ajax({
         url: apiUrl + '/gigs',
         method: 'GET'
       })
     }
-
     const createGig = (data) => {
       return $.ajax({
         url: apiUrl + '/gigs',
@@ -187,7 +172,6 @@
         data: data
       })
     }
-
     const updateGig = (data, gigId) => {
       return $.ajax({
         url: apiUrl + '/gigs/' + gigId,
@@ -198,7 +182,6 @@
         data: data
       })
     }
-
     const deleteGig = (gigId) => {
       return $.ajax({
         url: apiUrl + '/gigs/' + gigId,
@@ -208,7 +191,6 @@
         }
       })
     }
-
     const signIn = function (data) {
       return $.ajax({
         url: apiUrl + '/sign-in',
@@ -216,7 +198,6 @@
         data
       })
     }
-
     const onSignIn = function (event) {
       event.preventDefault()
       $('.load-log').removeClass('disappear')
@@ -227,9 +208,7 @@
         .then(signInSuccess)
         .catch(console.log)
     }
-
     let gigData
-
     const showIndexedGigs = () => {
       indexGigs()
         .then((responseData) => { gigData = responseData })
@@ -246,22 +225,17 @@
           $('.login-background2').removeClass('login-background')
         })
     }
-
-
     const sortByDate = function (gigs) {
       return gigs.sort(function compareNumbers (a, b) {
         console.log('sample time', new Date(a.date).getTime())
         return parseInt(new Date(a.date).getTime()) - parseInt(new Date(b.date).getTime())
       })
     }
-
     let sortedGigs
-
     const signInSuccess = function (data) {
       store.user = data.user
       showIndexedGigs()
     }
-
     class Gig {
       constructor (data) {
         this.gig = {
@@ -273,7 +247,6 @@
         }
       }
     }
-
     const onCreateGig = function (event) {
       event.preventDefault()
       const data = getFormFields(this)
@@ -285,10 +258,8 @@
       const gig = new Gig(data.gig)
       createGig(gig)
         .then(showIndexedGigs)
-        // .then(() => alert('success'))
-        .then(() => $('.success-loader').show())
+        .then(() => $('#success-modal').modal('show'))
     }
-
     const onEditGig = function (event) {
       event.preventDefault()
       const data = getFormFields(this)
@@ -297,20 +268,16 @@
       const gigId = $(event.target).data('id')
       updateGig(gig, gigId)
         .then(showIndexedGigs)
-        // .then(() => alert('success'))
-        .then(() => $('.success-loader').show())
+        .then(() => $('#success-modal').modal('show'))
     }
-
     const onDeleteGig = function (event) {
       event.preventDefault()
       const gigId = $(event.target).data('id')
       console.log('Delete gigId', gigId)
       deleteGig(gigId)
         .then(showIndexedGigs)
-        // .then(() => alert('success'))
-        .then(() => $('.success-loader').show())
+        .then(() => $('#success-modal').modal('show'))
     }
-
     $('#sign-in').on('submit', onSignIn)
     $('#create-gig').on('submit', onCreateGig)
     $('#handlebar-gigs').on('submit', '.update-gig', onEditGig)

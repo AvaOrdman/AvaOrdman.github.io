@@ -17,7 +17,6 @@
 
 .students-background {
   background-color: black;
-  // background-image: url('../../img/Students4.jpg');
   background-image: url('../../img/Board.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -117,13 +116,13 @@
   margin-top: 3em;
   margin-right: 0;
   height: 60px;
-  min-width: 100%;
+  width: 100%;
 }
 
 .frame-top {
   margin-right: 0;
   height: 60px;
-  min-width: 100%;
+  width: 100%;
 }
 
 .text {
@@ -267,8 +266,8 @@
 
 .link {
   text-align: center;
-  font-family: 'Lora', serif;
-  font-size: 20px;
+  font-family: alice, serif;
+  font-size: 22px;
   color: #d7bb67;
   transition: .3s;
 }
@@ -292,7 +291,10 @@
 }
 
 #videos-header {
+  font-family: alice, serif;
+  color: #d7bb67;
   margin: 1em 0;
+  text-align: center;
 }
 
 .student-videos {
@@ -354,9 +356,10 @@
   z-index: 2;
 }
 
-// .vid-row {
-//   margin-top: -440px;
-// }
+.vid-row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
 
 .pinup-overlay-videos {
   height: 450px;
@@ -660,7 +663,7 @@
 }
 
 .disappear {
-  display: none;
+  display: none !important;
 }
 
 .concerto {
@@ -668,8 +671,8 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 6em;
-  margin: 0;
+  padding: 0 6em !important;
+  margin: 0 !important;
 }
 
 .movement {
@@ -1012,11 +1015,15 @@ circle {
   box-shadow: 2px 2px 6px 2px rgba(10, 10, 10, 0.2), -2px -2px 6px 2px rgba(10, 10, 10, 0.2);
 }
 
-// #students-page {
+/* // #students-page {
 //   margin-top: 86px;
 //   // display: flex;
 //   // justify-content: center;
-// }
+// } */
+
+#students-page {
+  overflow-x: hidden;
+}
 
 #students-page-container {
   display: flex;
@@ -1080,9 +1087,14 @@ circle {
 
 @media only screen and (max-width: 600px) {
   .students-background {
+    background-image: url('../../img/CorkBoard.jpg');
     background-size: 100%;
     background-repeat: repeat-y;
     background-attachment: scroll;
+  }
+  .frame-top, .frame-bottom {
+    height: 60px;
+    width: 100vw;
   }
   .rec-row-2 {
     display: flex;
@@ -1157,7 +1169,8 @@ circle {
   }
   #blurb2 {
     position: absolute;
-    bottom: 0.5em;
+    /* bottom: 0.5em; */
+    bottom: 94px;
     margin: 0;
   }
 

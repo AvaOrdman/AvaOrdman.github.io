@@ -910,9 +910,9 @@ hr {
 .initLog-headers {
   margin-bottom: 1em;
   text-align: center;
-  // font-family: alice, serif;
-  font-family: 'Lora', serif;
-  // font-size: 1.3em;
+  font-family: alice, serif;
+  /* font-family: 'Lora', serif; */
+  font-size: 1.3em;
   color: #d7bb67;
 }
 

@@ -264,7 +264,7 @@
       // console.log('date', data.gig.date.toString())
       const gig = new Gig(data.gig)
       createGig(gig)
-        .then(indexGigs)
+        .then(showIndexedGigs)
         .then(() => alert('success'))
     }
 
@@ -275,7 +275,7 @@
       const gig = new Gig(data.gig)
       const gigId = $(event.target).data('id')
       updateGig(gig, gigId)
-        .then(indexGigs)
+        .then(showIndexedGigs)
         .then(() => alert('success'))
     }
 
@@ -284,7 +284,7 @@
       const gigId = $(event.target).data('id')
       console.log('Delete gigId', gigId)
       deleteGig(gigId)
-        .then(indexGigs)
+        .then(showIndexedGigs)
         .then(() => alert('success'))
     }
 

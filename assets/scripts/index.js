@@ -18,7 +18,9 @@ $(() => {
   $('#contact-page').hide()
   $('#bio-page').hide()
   $('#students-page').hide()
-  // events.addHandlers()
+  $('.nav-linkX').on('click', function() {
+    $('.navbar-collapse').collapse('hide');
+  })
   const blurbs = function () {
     setTimeout(function () {
       $('#blurb3').removeClass('disappear')

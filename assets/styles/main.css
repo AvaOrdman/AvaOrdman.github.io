@@ -1094,7 +1094,7 @@ circle {
 @media only screen and (max-width: 600px) {
   .recordings-background {
     background-color: black;
-    background-image: none;
+    background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
   }
   .students-background {
     background-image: url('../../img/CorkBoard.jpg');
